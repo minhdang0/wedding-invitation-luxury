@@ -27,9 +27,11 @@
         --ease-out: cubic-bezier(0, 0.55, 0.45, 1);
         --max: 1170px;
 
-        /* === FONT CHÍNH ĐỔI SANG PINYON SCRIPT === */
+        /* === FONT: Pinyon Script cho display/body, Libre Baskerville cho headings === */
         --font-display: "Pinyon Script", cursive;
+        --font-heading: "Libre Baskerville", serif;
         --font-body: "Pinyon Script", cursive;
+        --font-ui: "DM Sans", sans-serif;
       }
       * {
         margin: 0;
@@ -116,6 +118,14 @@
           transform: scale(1.08) translate(-12px, -6px);
         }
       }
+      @keyframes kenBurnsSoft {
+        0% {
+          transform: scale(1) translate(0, 0);
+        }
+        100% {
+          transform: scale(1.03) translate(-4px, -2px);
+        }
+      }
       @keyframes wishIn {
         from {
           opacity: 0;
@@ -199,10 +209,10 @@
       @keyframes floatUp2 {
         0%,
         100% {
-          transform: translateY(0) rotate(-45deg);
+          transform: translateY(-50px) rotate(-45deg);
         }
         50% {
-          transform: translateY(-10px) rotate(-48deg);
+          transform: translateY(-30px) rotate(-48deg);
         }
       }
 
@@ -309,13 +319,13 @@
         text-transform: uppercase;
         color: rgba(255, 255, 255, 0.5);
         transition: color 0.4s;
-        font-family: "DM Sans", sans-serif;
+        font-family: var(--font-ui);
       }
       .nav.scrolled .nav-tag {
         color: var(--warm);
       }
 
-      /* ══ CONNECTOR — gọn hơn, nhỏ hơn ══ */
+      /* ══ CONNECTOR — gắn kết hơn với wave shape ══ */
       .sec-connector {
         display: flex;
         align-items: center;
@@ -368,6 +378,74 @@
         background: var(--cream);
       }
 
+      /* ══ BRIDGE SECTION — thêm mới để gắn kết sections ══ */
+      .sec-bridge {
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px 0 12px;
+        background: var(--offwhite);
+      }
+      .sec-bridge.bg-dark {
+        background: var(--charcoal);
+      }
+      .sec-bridge.bg-cream {
+        background: var(--cream);
+      }
+      .sec-bridge.bg-terracotta {
+        background: var(--terracotta);
+      }
+      .sec-bridge-inner {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        position: relative;
+        z-index: 2;
+      }
+      .sec-bridge-line {
+        height: 1px;
+        width: 80px;
+        background: linear-gradient(
+          to right,
+          transparent,
+          rgba(184, 150, 58, 0.4),
+          transparent
+        );
+      }
+      .sec-bridge-text {
+        font-size: 7px;
+        letter-spacing: 5px;
+        text-transform: uppercase;
+        color: rgba(184, 150, 58, 0.6);
+        white-space: nowrap;
+        font-family: var(--font-ui);
+      }
+      .sec-bridge-text.light {
+        color: rgba(255, 255, 255, 0.35);
+      }
+      .sec-bridge-gem {
+        width: 5px;
+        height: 5px;
+        background: var(--gold);
+        transform: rotate(45deg);
+        opacity: 0.5;
+        flex-shrink: 0;
+      }
+      /* Zigzag divider */
+      .divider-wave {
+        position: relative;
+        height: 32px;
+        overflow: hidden;
+        background: transparent;
+      }
+      .divider-wave svg {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+      }
+
       /* ══ HERO ══ */
       .hero {
         position: relative;
@@ -387,7 +465,7 @@
         height: 100%;
         object-fit: cover;
         object-position: center top;
-        animation: kenBurns 14s ease-in-out infinite alternate;
+        animation: kenBurnsSoft 14s ease-in-out infinite alternate;
         will-change: transform;
       }
       .hero-bg .img-portrait {
@@ -402,8 +480,8 @@
           width: 100%;
           height: 100%;
           object-fit: cover;
-          object-position: center 20%;
-          animation: kenBurns 14s ease-in-out infinite alternate;
+          object-position: center center;
+          animation: kenBurnsSoft 22s ease-in-out infinite alternate;
           will-change: transform;
         }
       }
@@ -484,14 +562,14 @@
         text-transform: uppercase;
         color: rgba(255, 255, 255, 0.55);
         margin-bottom: 22px;
-        font-family: "DM Sans", sans-serif;
+        font-family: var(--font-ui);
       }
       .hero-role {
         font-size: 9px;
         letter-spacing: 4px;
         text-transform: uppercase;
         color: rgba(255, 255, 255, 0.5);
-        font-family: "DM Sans", sans-serif;
+        font-family: var(--font-ui);
         margin-bottom: 6px;
       }
       .hero-name {
@@ -540,7 +618,7 @@
         letter-spacing: 4px;
         text-transform: uppercase;
         color: rgba(255, 255, 255, 0.5);
-        font-family: "DM Sans", sans-serif;
+        font-family: var(--font-ui);
       }
       .hero-bottom-bar .gem {
         width: 5px;
@@ -573,7 +651,7 @@
         text-transform: uppercase;
         color: rgba(255, 255, 255, 0.4);
         writing-mode: vertical-lr;
-        font-family: "DM Sans", sans-serif;
+        font-family: var(--font-ui);
       }
 
       /* ══ ORNAMENT ══ */
@@ -619,7 +697,7 @@
         justify-content: center;
         gap: 12px;
         margin-bottom: 16px;
-        font-family: "DM Sans", sans-serif;
+        font-family: var(--font-ui);
       }
       .sec-label::before,
       .sec-label::after {
@@ -630,9 +708,9 @@
         opacity: 0.4;
       }
 
-      /* ══ SWEET SECTION TOP — BG CREAM + TEXT TỐI ══ */
+      /* ══ SWEET SECTION TOP ══ */
       .sweet-section-top {
-        background: var(--cream); /* ĐÃ ĐỔI SANG CREAM */
+        background: var(--cream);
         padding: 0;
         position: relative;
         overflow: hidden;
@@ -681,18 +759,18 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 28px 40px 0;
+        padding: 8px 12px;
         font-size: 8px;
         letter-spacing: 4px;
         text-transform: uppercase;
-        color: rgba(122, 90, 64, 0.5); /* warm màu tối hơn cho cream bg */
+        color: rgba(122, 90, 64, 0.5);
         position: relative;
         z-index: 2;
-        font-family: "DM Sans", sans-serif;
+        font-family: var(--font-ui);
       }
       .sweet-grid {
         display: grid;
-        grid-template-columns: 1fr 1fr !important;
+        grid-template-columns: 4fr 2fr !important;
         min-height: 400px;
         position: relative;
         z-index: 2;
@@ -714,7 +792,6 @@
       .sweet-photo-col:hover img {
         transform: scale(1.05);
       }
-      /* Overlay nhẹ hơn vì bg là cream */
       .sweet-photo-ov {
         position: absolute;
         inset: 0;
@@ -760,7 +837,7 @@
         font-family: var(--font-display);
         font-size: clamp(60px, 10vw, 120px);
         line-height: 1;
-        color: rgba(122, 90, 64, 0.06); /* tối màu cho cream bg */
+        color: rgba(122, 90, 64, 0.06);
         position: absolute;
         top: 24px;
         right: 28px;
@@ -770,14 +847,14 @@
       }
       .sweet-eyebrow {
         font-size: 8px;
-        letter-spacing: 5px;
+        letter-spacing: 2px;
         text-transform: uppercase;
         color: var(--terracotta);
         margin-bottom: 18px;
         display: flex;
         align-items: center;
-        gap: 12px;
-        font-family: "DM Sans", sans-serif;
+        gap: 6px;
+        font-family: var(--font-ui);
       }
       .sweet-eyebrow::after {
         content: "";
@@ -787,22 +864,14 @@
         background: var(--terracotta);
         opacity: 0.5;
       }
-      /* Title — màu charcoal thay vì trắng vì bg cream */
       .sweet-title {
         font-family: var(--font-display);
-        font-size: clamp(28px, 5vw, 52px);
+        font-size: clamp(26px, 3.5vw, 44px);
+        line-height: 1.2;
         font-weight: 400;
         color: var(--charcoal);
-        line-height: 1.15;
         margin-bottom: 6px;
         letter-spacing: 0.5px;
-      }
-      .sweet-title em {
-        font-style: normal;
-        background: linear-gradient(135deg, var(--gold-lt), var(--terracotta));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
       }
       .sweet-rule {
         width: 48px;
@@ -810,7 +879,6 @@
         background: linear-gradient(to right, var(--terracotta), transparent);
         margin: 20px 0;
       }
-      /* Body text — màu warm/charcoal cho cream bg */
       .sweet-body-text {
         font-family: var(--font-display);
         font-size: clamp(14px, 1.8vw, 18px);
@@ -821,18 +889,22 @@
       .sweet-body-text strong {
         color: var(--charcoal);
       }
+
+      /* ══ STAMP — FIX ALIGNMENT ══ */
       .sweet-stamp {
         display: inline-flex;
         flex-direction: column;
-        align-items: center;
+        align-items: center; /* căn giữa tất cả children */
         border: 1px solid rgba(184, 150, 58, 0.4);
-        padding: 12px 16px;
-        gap: 4px;
+        padding: 14px 20px;
+        gap: 6px;
         width: fit-content;
+        max-width: 100%;
         background: rgba(184, 150, 58, 0.06);
         transition:
           border-color 0.3s,
           background 0.3s;
+        box-sizing: border-box;
       }
       .sweet-stamp:hover {
         border-color: rgba(184, 150, 58, 0.7);
@@ -843,22 +915,48 @@
         letter-spacing: 4px;
         text-transform: uppercase;
         color: rgba(184, 150, 58, 0.75);
-        font-family: "DM Sans", sans-serif;
+        font-family: var(--font-ui);
+        text-align: center; /* luôn căn giữa text */
+        white-space: nowrap; /* không wrap */
+        width: 100%; /* fill chiều ngang stamp */
+        display: block;
       }
       .sweet-stamp-names {
         font-family: var(--font-display);
         font-size: clamp(18px, 2.5vw, 26px);
         color: var(--charcoal);
-        line-height: 1;
+        line-height: 1.2;
+        text-align: center;
+        /* flex col trên mobile — see responsive below */
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 6px;
+        flex-wrap: nowrap;
+        white-space: nowrap;
+      }
+      @media (max-width: 480px) {
+        .sweet-stamp-names {
+          flex-direction: column;
+          gap: 2px;
+          white-space: normal;
+          text-align: center;
+        }
+        .sweet-stamp-names .amp {
+          display: none;
+        }
       }
       .sweet-stamp-date {
         font-size: 8px;
         letter-spacing: 3px;
         color: var(--warm);
         text-transform: uppercase;
-        font-family: "DM Sans", sans-serif;
+        font-family: var(--font-ui);
+        text-align: center;
+        width: 100%;
+        display: block;
       }
-      /* Letter band — cream bg */
+
       .sweet-letter-band {
         background: rgba(184, 150, 58, 0.06);
         border-top: 1px solid rgba(184, 150, 58, 0.18);
@@ -900,15 +998,20 @@
           rgba(184, 150, 58, 0.025) 41px
         );
       }
+
+      /* ══ HEADINGS — dùng font-heading dễ đọc ══ */
       .sweet-heading {
-        font-family: var(--font-display);
-        font-size: clamp(28px, 6vw, 42px);
+        font-family: var(--font-heading);
+        font-size: clamp(20px, 4vw, 32px);
+        font-weight: 700;
+        letter-spacing: 3px;
+        text-transform: uppercase;
         color: var(--charcoal);
         margin-bottom: 6px;
       }
       .sweet-sub {
         font-family: var(--font-display);
-        font-size: 20px;
+        font-size: 24px;
         color: var(--warm);
         margin-bottom: 40px;
       }
@@ -1016,7 +1119,7 @@
         transition: all 0.35s var(--ease);
         position: relative;
         overflow: hidden;
-        font-family: "DM Sans", sans-serif;
+        font-family: var(--font-ui);
       }
       .inv-badge::before {
         content: "";
@@ -1133,21 +1236,24 @@
         padding-right: 8px;
         filter: drop-shadow(0 2px 16px rgba(0, 0, 0, 0.3));
       }
+      /* ══ FIX: Editorial headings dùng Libre Baskerville ══ */
       .ed-our {
         display: block;
-        font-family: var(--font-display);
-        font-size: clamp(32px, 9vw, 56px);
+        font-family: var(--font-heading);
+        font-size: clamp(24px, 6vw, 44px);
         font-weight: 400;
+        letter-spacing: 4px;
+        text-transform: uppercase;
         color: rgba(255, 255, 255, 0.94);
-        letter-spacing: 1px;
       }
       .ed-lovestory {
         display: block;
-        font-family: var(--font-display);
-        font-size: clamp(32px, 9vw, 56px);
+        font-family: var(--font-heading);
+        font-size: clamp(28px, 7vw, 50px);
         font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
         color: var(--gold-lt);
-        letter-spacing: 1px;
       }
       .ed-cutout {
         position: absolute;
@@ -1183,7 +1289,7 @@
         text-transform: uppercase;
         color: rgba(255, 255, 255, 0.65);
         text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
-        font-family: "DM Sans", sans-serif;
+        font-family: var(--font-ui);
       }
       .ed-right {
         background: var(--sage);
@@ -1211,7 +1317,7 @@
         writing-mode: vertical-rl;
         transform: rotate(180deg);
         white-space: nowrap;
-        font-family: "DM Sans", sans-serif;
+        font-family: var(--font-ui);
       }
       .ed-brand-v {
         font-family: var(--font-display);
@@ -1259,12 +1365,15 @@
         opacity: 0.2;
         transform: translateY(-50%);
       }
+      /* ══ FIX: Fall heading ══ */
       .fall-heading {
-        font-family: var(--font-display);
-        font-size: clamp(36px, 10vw, 64px);
-        font-weight: 400;
+        font-family: var(--font-heading);
+        font-size: clamp(24px, 6vw, 44px);
+        font-weight: 700;
+        letter-spacing: 4px;
+        text-transform: uppercase;
         color: var(--charcoal);
-        line-height: 1.1;
+        line-height: 1.2;
         margin-bottom: 8px;
       }
       .fall-sub {
@@ -1382,7 +1491,7 @@
         color: var(--gold);
         opacity: 0.7;
         white-space: nowrap;
-        font-family: "DM Sans", sans-serif;
+        font-family: var(--font-ui);
       }
       .poetry-text {
         margin-bottom: 48px;
@@ -1394,7 +1503,7 @@
         text-transform: uppercase;
         color: var(--terracotta);
         margin-bottom: 20px;
-        font-family: "DM Sans", sans-serif;
+        font-family: var(--font-ui);
       }
       .poetry-text p {
         font-family: var(--font-display);
@@ -1421,19 +1530,19 @@
         display: flex;
         justify-content: flex-end;
         align-items: flex-end;
-        gap: 10px;
-        padding-bottom: clamp(60px, 14vw, 120px);
+        gap: 16px;
+        padding-bottom: clamp(80px, 18vw, 160px);
         padding-right: 0;
       }
       .poetry-img-v {
         flex-shrink: 0;
         overflow: hidden;
         position: relative;
-        width: clamp(100px, 26vw, 180px);
-        height: clamp(150px, 38vw, 270px);
+        width: clamp(140px, 36vw, 260px);
+        height: clamp(220px, 52vw, 390px);
       }
       .poetry-img-v:first-child {
-        height: clamp(170px, 44vw, 310px);
+        height: clamp(260px, 62vw, 460px);
         align-self: flex-start;
       }
       .poetry-img-v img {
@@ -1456,7 +1565,7 @@
         background: rgba(0, 0, 0, 0.28);
         padding: 3px 8px;
         backdrop-filter: blur(4px);
-        font-family: "DM Sans", sans-serif;
+        font-family: var(--font-ui);
       }
       .poetry-mid-line {
         display: flex;
@@ -1492,7 +1601,7 @@
         padding: 3px 0;
       }
       .poetry-num {
-        font-family: var(--font-display);
+        font-family: var(--font-heading);
         font-size: clamp(40px, 10vw, 72px);
         font-weight: 900;
         color: rgba(26, 18, 8, 0.05);
@@ -1521,7 +1630,7 @@
         color: var(--charcoal);
         opacity: 0.6;
         line-height: 1.9;
-        z-index: 1;
+        z-index: 3;
         pointer-events: none;
       }
       .poetry-rotate-text {
@@ -1536,7 +1645,7 @@
         writing-mode: vertical-lr;
         z-index: 4;
         white-space: nowrap;
-        font-family: "DM Sans", sans-serif;
+        font-family: var(--font-ui);
       }
       @media (max-width: 640px) {
         .poetry-rotate-text {
@@ -1571,7 +1680,7 @@
         color: var(--gold);
         opacity: 0.6;
         white-space: nowrap;
-        font-family: "DM Sans", sans-serif;
+        font-family: var(--font-ui);
       }
       .poetry-bg-wrap {
         position: relative;
@@ -1716,8 +1825,8 @@
         opacity: 0.4;
       }
       .cal-you {
-        font-family: var(--font-display);
-        font-size: clamp(14px, 2.5vw, 18px);
+        font-family: var(--font-heading);
+        font-size: clamp(11px, 2vw, 14px);
         letter-spacing: 6px;
         text-transform: uppercase;
         color: rgba(255, 255, 255, 0.35);
@@ -1725,12 +1834,15 @@
         position: relative;
         z-index: 2;
       }
+      /* ══ FIX: Calendar heading ══ */
       .cal-are-perfect {
-        font-family: var(--font-display);
-        font-size: clamp(32px, 5.5vw, 52px);
-        font-weight: 600;
+        font-family: var(--font-heading);
+        font-size: clamp(24px, 4.5vw, 42px);
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
         color: #fff;
-        line-height: 1.1;
+        line-height: 1.2;
         position: relative;
         z-index: 2;
         margin-bottom: 4px;
@@ -1740,7 +1852,7 @@
       }
       .cal-tagline {
         font-family: var(--font-display);
-        font-size: 24px;
+        font-size: 22px;
         color: rgba(255, 255, 255, 0.45);
         position: relative;
         z-index: 2;
@@ -1784,7 +1896,7 @@
         text-transform: uppercase;
         color: #fff;
         line-height: 2.8;
-        font-family: "DM Sans", sans-serif;
+        font-family: var(--font-ui);
       }
       .cal-card-wrap {
         padding: 0 24px 64px;
@@ -1826,7 +1938,7 @@
         color: var(--warm);
         margin-bottom: 22px;
         text-align: center;
-        font-family: "DM Sans", sans-serif;
+        font-family: var(--font-ui);
       }
       .cal-grid {
         display: grid;
@@ -1841,7 +1953,7 @@
         color: var(--warm);
         padding: 5px 0;
         opacity: 0.6;
-        font-family: "DM Sans", sans-serif;
+        font-family: var(--font-ui);
       }
       .cal-day {
         font-size: 12px;
@@ -1855,7 +1967,7 @@
         transition:
           background 0.2s,
           color 0.2s;
-        font-family: "DM Sans", sans-serif;
+        font-family: var(--font-ui);
       }
       .cal-day.hi {
         background: var(--terracotta);
@@ -1883,7 +1995,7 @@
         line-height: 2;
       }
       .cal-wedding-info small {
-        font-family: "DM Sans", sans-serif;
+        font-family: var(--font-ui);
         font-size: 11px;
         color: var(--warm);
         letter-spacing: 2px;
@@ -1925,7 +2037,7 @@
         opacity: 0.5;
         margin-top: 5px;
         display: block;
-        font-family: "DM Sans", sans-serif;
+        font-family: var(--font-ui);
       }
 
       /* ══ POEMS ══ */
@@ -1975,7 +2087,7 @@
         position: absolute;
         top: 20px;
         right: 48px;
-        font-family: var(--font-display);
+        font-family: var(--font-heading);
         font-size: 120px;
         font-weight: 900;
         color: rgba(255, 255, 255, 0.07);
@@ -2005,18 +2117,21 @@
       }
       .pd-title-our {
         display: block;
-        font-family: var(--font-display);
-        font-size: clamp(22px, 5vw, 38px);
+        font-family: var(--font-heading);
+        font-size: clamp(16px, 4vw, 28px);
+        font-weight: 400;
+        letter-spacing: 3px;
+        text-transform: uppercase;
         color: var(--terracotta);
-        letter-spacing: 1px;
       }
       .pd-title-lovestory {
         display: block;
-        font-family: var(--font-display);
-        font-size: clamp(30px, 7vw, 54px);
+        font-family: var(--font-heading);
+        font-size: clamp(22px, 6vw, 42px);
         font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
         color: var(--terracotta);
-        letter-spacing: 1px;
       }
       .pd-text-left {
         position: absolute;
@@ -2098,7 +2213,7 @@
         color: var(--charcoal);
         opacity: 0.4;
         z-index: 5;
-        font-family: "DM Sans", sans-serif;
+        font-family: var(--font-ui);
       }
       .poems-script-block {
         background: var(--offwhite);
@@ -2163,7 +2278,7 @@
         writing-mode: vertical-lr;
         color: var(--charcoal);
         opacity: 0.4;
-        font-family: "DM Sans", sans-serif;
+        font-family: var(--font-ui);
       }
       .poems-bottom-poem {
         padding: 48px 40px;
@@ -2272,7 +2387,7 @@
         text-transform: uppercase;
         color: rgba(255, 255, 255, 0.6);
         margin-bottom: 44px;
-        font-family: "DM Sans", sans-serif;
+        font-family: var(--font-ui);
       }
       .final-script {
         position: relative;
@@ -2363,7 +2478,7 @@
         box-shadow: 0 2px 10px rgba(26, 18, 8, 0.05);
       }
       .wi-n {
-        font-family: "DM Sans", sans-serif;
+        font-family: var(--font-ui);
         font-weight: 500;
         font-size: 10.5px;
         color: var(--terracotta);
@@ -2408,7 +2523,7 @@
         font-size: 8px;
         letter-spacing: 5px;
         text-transform: uppercase;
-        font-family: "DM Sans", sans-serif;
+        font-family: var(--font-ui);
         cursor: pointer;
         border-radius: 2px;
         transition: all 0.3s var(--ease);
@@ -2521,7 +2636,7 @@
         letter-spacing: 2.5px;
         text-transform: uppercase;
         color: rgba(255, 255, 255, 0.15);
-        font-family: "DM Sans", sans-serif;
+        font-family: var(--font-ui);
       }
 
       /* ══ RESPONSIVE ══ */
@@ -2576,7 +2691,7 @@
           height: 36px;
         }
         .sweet-meta-bar {
-          padding: 20px 16px 0;
+          padding: 4px 8px;
           font-size: 7px;
           letter-spacing: 3px;
         }
@@ -2585,6 +2700,15 @@
         }
         .sweet-letter-band p {
           font-size: 15px;
+        }
+        .sec-bridge-line {
+          width: 40px;
+        }
+        .sweet-grid {
+          grid-template-columns: 3fr 2fr !important;
+        }
+        .sweet-photo-col {
+          min-height: 320px;
         }
       }
       @media (min-width: 641px) and (max-width: 959px) {
@@ -2609,33 +2733,34 @@
           height: 500px;
         }
       }
-      @media (min-width: 1200px) {
-        .fall-compose {
-          max-width: 460px;
+      @media (min-width: 641px) {
+        .tall-photo {
+          max-width: 480px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .poems-script-block {
+          max-width: 480px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .poems-bottom-poem {
+          max-width: 480px;
+          margin-left: auto;
+          margin-right: auto;
         }
       }
-      @media (min-width: 641px) {
-      .tall-photo {
-        max-width: 480px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-    
-      .poems-script-block {
-        max-width: 480px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-    
-      .poems-bottom-poem {
-        max-width: 480px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-    }
     </style>
   </head>
   <body>
+    <audio
+      id="bg-mussic"
+      src="./assets/music/xungdoi.mp3"
+      loop
+      preload="auto"
+    ></audio>
     <div id="leaf-canvas"></div>
 
     <nav class="nav" id="main-nav">
@@ -2690,9 +2815,17 @@
       </div>
     </section>
 
+    <!-- BRIDGE: Hero → Sweet Top (dark bg transition) -->
     <div class="sec-connector dark"><div class="sec-connector-gem"></div></div>
+    <div class="sec-bridge bg-dark">
+      <div class="sec-bridge-inner">
+        <div class="sec-bridge-line"></div>
+        <span class="sec-bridge-text light">✦ OUR STORY ✦</span>
+        <div class="sec-bridge-line"></div>
+      </div>
+    </div>
 
-    <!-- SWEET TOP — cream bg -->
+    <!-- SWEET TOP -->
     <section class="sweet-section-top">
       <div class="sweet-orb sweet-orb-1"></div>
       <div class="sweet-orb sweet-orb-2"></div>
@@ -2725,8 +2858,8 @@
         </div>
         <div class="sweet-text-col" data-anim="left" data-d="2">
           <div class="sweet-num">01</div>
-          <div class="sweet-eyebrow">OUR LOVE STORY</div>
-          <div class="sweet-title">Fall In <em>Love</em></div>
+          <div class="sweet-eyebrow">OUR·LOVE·STORY</div>
+          <div class="sweet-title">Fall In Love</div>
           <div class="sweet-rule"></div>
           <div class="sweet-body-text">
             Trước đây cứ nghĩ đám cưới chỉ là một thông báo chính thức.<br />
@@ -2735,9 +2868,14 @@
             Là sự ủng hộ vô điều kiện từ những người thương yêu.<br /><br />
             <strong>Chúng mình, hẹn gặp nhau trong ngày cưới nhé!</strong>
           </div>
+          <!-- STAMP FIX -->
           <div class="sweet-stamp" data-anim="scale" data-d="3">
             <span class="sweet-stamp-top">✦ WEDDING INVITATION ✦</span>
-            <span class="sweet-stamp-names">Tên Cô Dâu &amp; Tên Chú Rể</span>
+            <span class="sweet-stamp-names">
+              Tên Cô Dâu
+              <span class="amp">&amp;</span>
+              Tên Chú Rể
+            </span>
             <span class="sweet-stamp-date">20 · 05 · 2050</span>
           </div>
         </div>
@@ -2749,14 +2887,23 @@
         style="max-width: var(--max); margin: 0 auto; box-sizing: border-box"
       >
         <p>
-          Cảm ơn gia đình bạn bè đã luôn đồng hành.<br />
-          Lâu rồi không gặp, thật sự rất nhớ mọi người!
-          <strong>Hẹn gặp lại nhé ♥</strong>
+          Cảm ơn gia đình bạn bè đã luôn đồng hành.<br />Lâu rồi không gặp, thật
+          sự rất nhớ mọi người! <strong>Hẹn gặp lại nhé ♥</strong>
         </p>
       </div>
     </section>
 
+    <!-- BRIDGE: Sweet Top → Sweet Card -->
     <div class="sec-connector"><div class="sec-connector-gem"></div></div>
+    <div class="sec-bridge">
+      <div class="sec-bridge-inner">
+        <div class="sec-bridge-gem"></div>
+        <div class="sec-bridge-line"></div>
+        <span class="sec-bridge-text">LOVE STORY · 2050</span>
+        <div class="sec-bridge-line"></div>
+        <div class="sec-bridge-gem"></div>
+      </div>
+    </div>
 
     <!-- SWEET CARD -->
     <section class="sweet-section">
@@ -2785,7 +2932,7 @@
             />
             <div class="card-ov"></div>
           </div>
-          <div class="sweet-tag">Sweet</div>
+          <div class="sweet-tag">Fantastic</div>
           <div class="card-corner tl"></div>
           <div class="card-corner tr"></div>
           <div class="card-corner bl"></div>
@@ -2806,7 +2953,15 @@
       </div>
     </section>
 
+    <!-- BRIDGE: Sweet Card → Editorial (dark transition) -->
     <div class="sec-connector dark"><div class="sec-connector-gem"></div></div>
+    <div class="sec-bridge bg-dark">
+      <div class="sec-bridge-inner">
+        <div class="sec-bridge-line"></div>
+        <span class="sec-bridge-text light">✦ EDITORIAL ✦</span>
+        <div class="sec-bridge-line"></div>
+      </div>
+    </div>
 
     <!-- EDITORIAL -->
     <section
@@ -2883,7 +3038,17 @@
       </div>
     </section>
 
+    <!-- BRIDGE: Editorial → Fall In Love -->
     <div class="sec-connector"><div class="sec-connector-gem"></div></div>
+    <div class="sec-bridge">
+      <div class="sec-bridge-inner">
+        <div class="sec-bridge-gem"></div>
+        <div class="sec-bridge-line"></div>
+        <span class="sec-bridge-text">FALL IN LOVE</span>
+        <div class="sec-bridge-line"></div>
+        <div class="sec-bridge-gem"></div>
+      </div>
+    </div>
 
     <!-- FALL IN LOVE -->
     <section class="sec-fall">
@@ -2926,7 +3091,15 @@
       </div>
     </section>
 
+    <!-- BRIDGE: Fall In Love → Poetry -->
     <div class="sec-connector"><div class="sec-connector-gem"></div></div>
+    <div class="sec-bridge">
+      <div class="sec-bridge-inner">
+        <div class="sec-bridge-line"></div>
+        <span class="sec-bridge-text">✦ OUR POETRY ✦</span>
+        <div class="sec-bridge-line"></div>
+      </div>
+    </div>
 
     <!-- POETRY -->
     <section class="sec-poetry">
@@ -3009,7 +3182,17 @@
       </div>
     </section>
 
+    <!-- BRIDGE: Poetry → Calendar -->
     <div class="sec-connector"><div class="sec-connector-gem"></div></div>
+    <div class="sec-bridge">
+      <div class="sec-bridge-inner">
+        <div class="sec-bridge-gem"></div>
+        <div class="sec-bridge-line"></div>
+        <span class="sec-bridge-text">SAVE THE DATE</span>
+        <div class="sec-bridge-line"></div>
+        <div class="sec-bridge-gem"></div>
+      </div>
+    </div>
 
     <!-- CALENDAR -->
     <section class="sec-calendar">
@@ -3091,7 +3274,15 @@
       </div>
     </section>
 
+    <!-- BRIDGE: Calendar → Poems (cream bg) -->
     <div class="sec-connector cream"><div class="sec-connector-gem"></div></div>
+    <div class="sec-bridge bg-cream">
+      <div class="sec-bridge-inner">
+        <div class="sec-bridge-line"></div>
+        <span class="sec-bridge-text">✦ MEMORIES ✦</span>
+        <div class="sec-bridge-line"></div>
+      </div>
+    </div>
 
     <!-- POEM PHOTOS -->
     <section class="sec-poems">
@@ -3155,6 +3346,9 @@
         </div>
       </div>
     </section>
+
+    <!-- BRIDGE: Poems → Final Hero -->
+    <div class="sec-connector"><div class="sec-connector-gem"></div></div>
 
     <!-- FINAL HERO -->
     <section class="sec-final">
@@ -3245,7 +3439,17 @@
       </div>
     </section>
 
+    <!-- BRIDGE: Final → Wish (cream) -->
     <div class="sec-connector cream"><div class="sec-connector-gem"></div></div>
+    <div class="sec-bridge bg-cream">
+      <div class="sec-bridge-inner">
+        <div class="sec-bridge-gem"></div>
+        <div class="sec-bridge-line"></div>
+        <span class="sec-bridge-text">GUESTBOOK · LỜI CHÚC</span>
+        <div class="sec-bridge-line"></div>
+        <div class="sec-bridge-gem"></div>
+      </div>
+    </div>
 
     <!-- WISH -->
     <section class="sec-wish">
@@ -3320,6 +3524,27 @@
     </footer>
 
     <script>
+      (function () {
+        const audio = document.getElementById("bg-mussic");
+        audio.volume = 0.55;
+        audio.play().catch(() => {
+          const events = ["click", "touchstart", "keydown", "scroll"];
+          function unlock() {
+            audio
+              .play()
+              .then(() => {
+                events.forEach((ev) =>
+                  document.removeEventListener(ev, unlock),
+                );
+              })
+              .catch(() => {});
+          }
+          events.forEach((ev) =>
+            document.addEventListener(ev, unlock, { passive: true }),
+          );
+        });
+      })();
+
       (function () {
         const days = ["CN", "T2", "T3", "T4", "T5", "T6", "T7"];
         const el = document.getElementById("cal");
